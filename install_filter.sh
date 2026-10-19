@@ -14,10 +14,15 @@
 
 set -oue pipefail
 
-declare -ri LOG_LEVEL="${BROWSER_LOG_LEVEL:-0}"
+declare LOG_LEVEL="${BROWSER_LOG_LEVEL:-0}"
+if [[ ! ${LOG_LEVEL} =~ ^[0-2]$ ]]; then
+  LOG_LEVEL=0
+  echo "LOG_LEVEL not valid, falling back to 0"
+fi
+declare -ri LOG_LEVEL
 
 function logecho () {
-  local -ri level=$1
+  local -ri level="${1}"
   if [[ $LOG_LEVEL -ge $level ]]; then
     echo "$2"
   fi
