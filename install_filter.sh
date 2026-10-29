@@ -1,4 +1,4 @@
-#! /bin/bash
+#! /bin/bash -p
 
 # Copyright 2025 The Trivalent Authors
 #
